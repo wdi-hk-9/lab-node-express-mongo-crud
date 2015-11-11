@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PET KINGDOM</title>
+</head>
+<body>
+  <header>
+    <h1>ANIMAL SHELTER</h1>
+    <h2>Add an animal</h2>
+  </header>
+  <form>
+    <div class="form-group">
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Breed">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Family">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Gender(M F)">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="dd/mm/yyyy">
+    </div>
+    <button type="submit" class="btn btn-success"> Add an Animal</button>
+  </form>
+  <div>
+    <ul>
+      <% animals.forEach(function(animal) { %>
+        <li> <%= animal.name %>                </li>
+        <li> Breed: <%= animal.breed %>        </li>
+        <li> Dob: <%= animal.dob %>            </li>
+        <li> Gender: <%= animal.gender %>      </li>
+        <li> Family: <%= animal.family %>      </li>
+        <li> LINK TO STATUS<%= animal.status %></li>
+        <% });
+      %>
+    </ul>
+  <div>
+</body>
+</html>
