@@ -37,3 +37,34 @@ console.log("Server Started");
 
 // ############ YOU CAN ADD YOUR CODE BELOW ########
 // ###### HAPPY CODING  :) #########################
+
+require("./models/animal");
+var Animal = moongoose.model("Animal");
+
+app.get("/animals", function(req, res){
+  Animal.find({}, function (err, animals) {
+    res.render('animals/index', { animals: animals });
+  });
+});
+
+app.post("/animals", function(req, res){
+  Animal.create(req.body.animal, function (err, animal) {
+    if(err){
+      res.send("something wrong happened"+ err);
+    }else{
+      res.redirect('/animals');
+    }
+  });
+});
+
+app.get("/animals/:id/adopt", function(req, res){
+  Animal.findByIdAndUpdate(req.params.id, {status: "adopted"}, function(err, animal){
+    res.redirect('/animals');
+  });
+});
+
+app.get("/animals/:id/abandon", function(req, res){
+  Animal.findByIdAndUpdate(req.params.id, {status: "orphan"}, function(err, animal){
+    res.redirect('/animals');
+  });
+});
