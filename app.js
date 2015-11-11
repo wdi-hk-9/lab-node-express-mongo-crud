@@ -7,7 +7,7 @@ var bodyParser     = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 
 var app = express();
-var router = express.Router()
+var router = express.Router();
 
 var moongoose = require('mongoose');
 moongoose.connect('mongodb://localhost/animalshelter');
@@ -16,7 +16,7 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('views', path.join(__dirname, 'views'));
-app.use(expressLayouts)
+app.use(expressLayouts);
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
@@ -32,8 +32,8 @@ if (app.get('env') === 'development') {
   });
 }
 
-app.listen(3000)
-
+app.listen(3000);
+console.log("Server Started");
 
 // ############ YOU CAN ADD YOUR CODE BELOW ########
 // ###### HAPPY CODING  :) #########################
