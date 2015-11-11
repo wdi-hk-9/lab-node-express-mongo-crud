@@ -8,9 +8,10 @@ var expressLayouts = require('express-ejs-layouts');
 
 var app = express();
 var router = express.Router();
+var port = process.env.PORT || 3000;
 
 var moongoose = require('mongoose');
-moongoose.connect('mongodb://localhost/animalshelter');
+moongoose.connect('mongodb://127.0.0.1/animalshelter');
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,3 +38,25 @@ console.log("Server Started");
 
 // ############ YOU CAN ADD YOUR CODE BELOW ########
 // ###### HAPPY CODING  :) #########################
+var Animal = require('./models/animal')
+
+// Animal.find({}, function(err, animals) {
+//   if (err) console.log(err);
+//   console.log(animals);
+// });
+
+// var cat = new Animal({ family: 'cat'});
+
+// cat.findSimilarFamily(function (err, cats ) {
+//   console.log(cats);
+// })
+
+Animal.all({}, function (err, animals) {
+  console.log(animals);
+});
+
+
+
+// router.get('/', function(req, res) {
+
+// });
