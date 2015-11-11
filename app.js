@@ -24,21 +24,6 @@ app.set('view engine', 'ejs');
 // Requring Animal model
 var Animal = require('./models/animal');
 
-var newAnimal = Animal({
-  breed: 'Ragdoll',
-  family: 'Cat',
-  name: 'Dob',
-  gender: 'F',
-  date: '',
-});
-
-// save the user
-newAnimal.save(function(err) {
-  if (err) console.log(err);
-  console.log('Animal created!');
-});
-
-
 // Routes
 // Index
 app.get('/', function(req, res) {
@@ -47,7 +32,21 @@ app.get('/', function(req, res) {
 
 // Create
 app.post('/', function(req, res){
-  res.send
+  //create new animal with form data ('req.body')
+  var newAnimal = new Animal({
+    breed: req.body.breed,
+    family: req.body.family,
+    name: req.body.name,
+    gender: req.body.gender,
+    date: req.body.date
+  });
+  // save new animal in db
+  newAnimal.save(function (err) {
+    if (err) console.log(err);
+    console.log('Animal created!');
+  });
+
+  res.render('index');
 })
 
 
