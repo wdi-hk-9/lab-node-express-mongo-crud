@@ -2,7 +2,6 @@ var express        = require('express');
 var path           = require('path');
 var debug          = require("debug");
 var logger         = require('morgan');
-var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 
@@ -13,13 +12,14 @@ var moongoose = require('mongoose');
 moongoose.connect('mongodb://localhost/animalshelter');
 
 app.use(logger('dev'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(express.static(path.join(__dirname + '.../views')));
-app.set('views', path.join(__dirname, '.../views'));
-app.use(expressLayouts);
-app.engine('ejs', require('ejs').renderFile);
+app.set('views', './views');
 app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, '.../views'));
+// app.use(expressLayouts);
+// app.engine('ejs', require('ejs').renderFile);
 
 // development error handler
 // will print stacktrace
