@@ -11,25 +11,31 @@ We've seen how to use MongoDB in a Node environment, so now, let's practice Mong
 
 #### Requirements
 
-- The application will represent an animal shelter and the user will have options to:
-  - Adopt a pet
-  - Abandon a pet
-  - Leave a new pet in the shelter
-- The root page will show the list of animals
-- For each animal on the index, a link will be displayed
-  - If the animal is "orphan", then the link will be to "adopt" the animal
-  - If the animal is "adopted", then the link will be to "abandon" the animal
-- Create a model Animal with these fields:
+1. The Application should have 4 funtions:
+  - See all pets (index | render a html listing all pets)
+  - Leave a new pet in the shelter (create | create a pet & redirect to index)
+  - Adopt a pet (update | update a pet & redirect to index)
+  - Abandon a pet (update | update a pet & redirect to index)
+
+1. The root page and `/animals` will show the list of animals
+
+1. The index page should:
+  1. Show a form to create a new animal
+  1. For each animal, a link will be displayed
+    - If the animal is "orphan", then the link will be to "adopt" the animal
+    - If the animal is "adopted", then the link will be to "abandon" the animal
+
+1. Create a model Animal with these fields:
   - name(String)
   - breed(String)
   - dob(Date)
   - gender(String)
   - family(String)
   - status(String)
-- Everything can be in one page, and this page will contain some links and a form
 
 **Bonus:**
-- Add some style
+
+- Add some style (Bootstrap)
 - Add a field image to link pictures from the web
 - Add validations with Mongoose
 
@@ -42,10 +48,9 @@ Then, run the app!
 #### Deliverable
 
 
-![Example Image](http://s30.postimg.org/uv04jcwox/Screen_Shot_2015_07_21_at_16_00_59.png)
+![Example Image](preview.png)
 
 ## Additional Resources
-
 
 - [Express JS documentation](http://expressjs.com/api.html)
 - [MongooseJS documentation](http://mongoosejs.com/docs/api.html)
