@@ -9,32 +9,31 @@
   <h2> Add an Animal</h2>
   <hr>
 
-  <form>
-    <input type="text" name="firstname" placeholder="Breed">
+  <form action='/animals' method='post'>
+    <input type="text" name="Animal[name]" placeholder="Breed">
 
-    <input type="text" name="lastname" placeholder="Family">
+    <input type="text" name="Animal[family]" placeholder="Family">
 
-    <input type="text" name="lastname" placeholder="Name">
+    <input type="text" name="Animal[name]" placeholder="Name">
 
-    <input type="text" name="lastname" placeholder="Gender(M F)">
+    <input type="text" name="Animal[gender]" placeholder="Gender(M F)">
 
-    <input type="text" name="lastname" placeholder="dd/mm/yyyy">
+    <input type="text" name="Animal[dob]" placeholder="dd/mm/yyyy">
   <br><br>
   <input type="submit" value="Add an animal">
 </form>
 
+<% animals.forEach(function(animals){ %>
 <ul>
-  <li> Name </li>
-  <ul>
-    <li> Breed: </li>
-    <li> DOB: </li>
-    <li> Gender: </li>
-    <li> Family: </li>
+  <li> <%= animals.name %></li>
+    <ul>
+    <li> Breed: <%= animals.breed %></li>
+    <li> DOB: <%= animals.dob %></li>
+    <li> Gender: <%= animals.gender %></li>
+    <li> Family: <%= animals.family %></li>
   </ul>
 </ul>
-
-<% animals.forEach(function(animals){ %>
-  <%= animals.name %>
 <% }) %>
+
 </body>
 </html>

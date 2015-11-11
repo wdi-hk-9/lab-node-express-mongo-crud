@@ -18,16 +18,22 @@ router.route('/')
           return console.log(err);
       }
     });
+  })
+  // CREATE
+  .post(function(req, res) {
+    return Animal.save(function(err) {
+      if (!err){
+        Animal.push(req.body)
+        res.json(req.body);
+        console.log('User created!');
+      }
+    })
   });
+
 
 module.exports = router
 
 // Testing if DB is working
 // var newAnimal = Animal({
 //   name: 'testing'
-// });
-
-// newAnimal.save(function(err) {
-//   if (err) console.log(err);
-//   console.log('User created!');
 // });
