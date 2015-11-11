@@ -1,13 +1,3 @@
----
-title: Mongoose Creation, Updates, & Queries Lab
-type: lab
-duration: "1:25"
-creator:
-    name: Gerry Mathe
-    city: London
-competencies: Server Applications
----
-
 # Mongoose Creation, Updates, & Queries Lab
 
 ## Introduction
@@ -45,7 +35,9 @@ We've seen how to use MongoDB in a Node environment, so now, let's practice Mong
 
 #### Starter code
 
-In the [starter code](starter-code) folder, you'll find a Node js app containing all the packages you need; run `npm install` to set the packages and create a mongo database named `animalshelter`. Then, run the app!
+This repo is a Node js app containing all the packages you need; run `npm install` to set the packages and create a mongo database named `animalshelter`.
+
+Then, run the app!
 
 #### Deliverable
 
