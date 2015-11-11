@@ -6,8 +6,6 @@ var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 
-var ObjectId = require('mongodb').ObjectID;
-
 var app = express();
 var router = express.Router();
 
