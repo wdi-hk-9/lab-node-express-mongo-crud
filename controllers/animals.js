@@ -21,16 +21,15 @@ router.route('/')
   })
   // CREATE
   .post(function(req, res) {
-    return Animal.save(function(err) {
-      if (!err){
-        Animal.push(req.body)
-        res.json(req.body);
+    var newAnimal = Animal (req.body)
+
+    // Submit to the DB
+    newAnimal.save(function(err) {
+      if (err) console.log(err);
         console.log('User created!');
-      }
-    })
-  });
-
-
+        res.redirect('/animals');
+    });
+  })
 module.exports = router
 
 // Testing if DB is working
