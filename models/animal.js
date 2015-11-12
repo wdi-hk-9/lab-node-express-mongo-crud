@@ -11,14 +11,6 @@ var animalSchema = new mongoose.Schema({
   updated_at: Date
 });
 
-// animalSchema.statics.all = function() {
-//   return this.find({});
-// }
-
-animalSchema.methods.findSimilarFamily = function (cb) {
-  return this.model('Animal').find({ family: this.family}, cb);
-};
-
 animalSchema.statics.all = function (cb) {
   return this.find({ }, cb);
 };

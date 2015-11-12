@@ -53,13 +53,15 @@ router.route('/')
   })
 
   .post(function(req, res) {
-    var newAnimal = new Animal(req.body);
+    var newAnimal = new Animal(req.body.animal);
 
     newAnimal.save(function(err) {
       if (err) {
-        return res.send(err);
+        res.send(err);
       }
-      res.send({ message: 'Animal Added' });
+      else {
+        res.redirect('/');
+      }
     });
   });
 
