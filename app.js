@@ -50,46 +50,30 @@ router.route('/')
         animals: animals,
       });
     });
+  })
+
+  .post(function(req, res) {
+    var newAnimal = new Animal(req.body);
+
+    newAnimal.save(function(err) {
+      if (err) {
+        return res.send(err);
+      }
+      res.send({ message: 'Animal Added' });
+    });
   });
 
-// app.get('/', function(req, res) {
-//     var drinks = [
-//         { name: 'Bloody Mary', drunkness: 3 },
-//         { name: 'Martini', drunkness: 5 },
-//         { name: 'Scotch', drunkness: 10 }
-//     ];
-//     var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
-
-//     res.render('pages/index', {
-//         drinks: drinks,
-//         tagline: tagline
-//     });
-// });
-
-
-
-//   .post(function(req, res) {
-//     var newAnimal = new Animal(req.body);
-
-//     newAnimal.save(function(err) {
-//       if (err) {
-//         return res.send(err);
-//       }
-//       res.send({ message: 'Animal Added' });
-//     });
-//   });
-
-// router.route('/animals/:id')
-//   .put(function(req, res) {
-//     Animal.findOne({ _id: req.params.id}, function(err, animal) {
-//       if (err) {
-//         return res.send(err);
-//       }
-//       if (animal[status] == 'adopted') {
-//         animal[status] = 'orphan';
-//       }
-//       animal[status] = 'adopted';
-//     })
-//   });
+router.route('/animals/:id')
+  .put(function(req, res) {
+    Animal.findOne({ _id: req.params.id}, function(err, animal) {
+      if (err) {
+        return res.send(err);
+      }
+      if (animal[status] == 'adopted') {
+        animal[status] = 'orphan';
+      }
+      animal[status] = 'adopted';
+    })
+  });
 
 app.use('/', router);
