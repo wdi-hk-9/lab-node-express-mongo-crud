@@ -36,27 +36,28 @@ console.log("Server Started");
 // ###### HAPPY CODING  :) #########################
 var Animal = require('./models/animal');
 
-//create an animal
-var oreo = new Animal({
-  name: "Oreo",
-  breed: "Ragdoll",
-  gender: "F",
-  family: "Cat",
-  status: "Abandon"
-})
+// //create an animal
+// var oreo = new Animal({
+//   name: "Oreo",
+//   breed: "Ragdoll",
+//   gender: "F",
+//   family: "Cat",
+//   status: "Abandon"
+// })
 
-//save the animal
-oreo.save(function(err) {
-  if (err)
-    console.log(err);
-  console.log('Animal created');
-});
+// //save the animal
+// oreo.save(function(err) {
+//   if (err)
+//     console.log(err);
+//   console.log('Animal created');
+// });
 
 // INDEX
-router.get(function(req, res, next) {
+router.get('/', function(req, res, next) {
   return Animal.find({}, function(err, animals) {
     if (!err){
-      res.render('index', { animals: animals });
+      res.render('index', { animals });
+      console.log(animals);
     } else {
         return console.log(err);
     }
@@ -84,22 +85,22 @@ router.get(function(req, res, next) {
 
 
 //UPDATE
-// router.put(function(req, res) {
-//   Bear.findById(req.params.id, function(err, bear) {
-//     if (err)
-//       res.send(err);
+router.put('/:id', function(req, res) {
+  Animal.findById(req.params.id, function(err, animal) {
+    if (err)
+      res.send(err);
 
-//     animal.status = req.body.status; //update animal status
+    animal.status = req.body.status; //update animal status
 
-//     animal.save(function(err){
-//       if (err)
-//         res.send(err);
+    animal.save(function(err){
+      if (err)
+        res.send(err);
 
-//       res.render('index', { header: bear });
-//     })
+      res.render('index', { header: 'hello' });
+    })
 
-//   });
-// });
+  });
+});
 
 app.use('/animals', router);
 
