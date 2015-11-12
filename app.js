@@ -33,7 +33,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-app.use(require('./controllers'));
+app.use(require('./controllers/animals'));
 app.listen(3000);
 console.log("Server Started");
 

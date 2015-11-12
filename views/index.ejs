@@ -25,7 +25,7 @@
 
 <% animals.forEach(function(animals){ %>
 <ul>
-<a href= <%= animals['_id'] %> >
+<a href= "/animals/<%= animals['_id'] %>" >
   <li> <%= animals.name %></li>
 </a>
     <ul>

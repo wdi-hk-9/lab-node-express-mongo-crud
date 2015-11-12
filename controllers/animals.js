@@ -5,12 +5,12 @@ var express    = require('express'),
     mongoose       = require('mongoose'),
     Animal         = require('../models/animal');
 
-router.route('/')
+router.route('/animals')
   // INDEX
   .get(function(req, res, next) {
     return Animal.find({}, function(err, animals) {
       if (!err){
-        res.render('index', {animals});
+        res.render('index', {animals: animals});
         console.log(animals);
       } else {
           return console.log(err);
@@ -30,19 +30,13 @@ router.route('/')
     });
   })
 
-router.route('/:id')
-  // SHOW
-  .get (function(req, res){
+router.route('/animals/:id')
+  // SHOW individual
+  .get(function(req, res){
     Animal.findById(req.params.id, function(err, animal) {
-      if (!err){
-        res.render('show', {animal})
-      } else  {
-        console.log(err)
-      }
+      res.render('show', {animal: animal})
+      })
     });
-});
-
-   // res.json(products[req.params.id])
 
 module.exports = router
 
