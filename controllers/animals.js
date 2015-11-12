@@ -16,14 +16,13 @@ router.get("/animals", function(req, res){
 
 router.post("/animals", function(req, res){
   Animal.create(req.body.animal, function (err, animal) {
-    if(err){
+    if (err){
       res.send("something wrong happened"+ err)
-    }else{
+    } else {
       res.redirect('/animals');
     }
-
   });
-  })
+})
 
 router.get("/animals/:id/adopt", function(req, res){
   Animal.findByIdAndUpdate(req.params.id, {status: "adopted"}, function(err, animal){

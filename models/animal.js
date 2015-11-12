@@ -6,6 +6,7 @@ var AnimalSchema = new mongoose.Schema({
   gender:         { type: String },
   family:         { type: String },
   status:         { type: String, enum: ["adopted", "orphan"] }
+  // http://mongoosejs.com/docs/api.html#schema_string_SchemaString-enum
 });
 
 var Animal = mongoose.model('Animal', AnimalSchema);
