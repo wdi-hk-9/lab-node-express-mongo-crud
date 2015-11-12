@@ -30,13 +30,26 @@ router.route('/animals')
     });
   })
 
-router.route('/animals/:id')
-  // SHOW individual
-  .get(function(req, res){
-    Animal.findById(req.params.id, function(err, animal) {
-      res.render('show', {animal: animal})
-      })
-    });
+// SHOW individual
+router.get('/animals/:id', function(req, res){
+  Animal.findById(req.params.id, function(err, animal) {
+    res.render('show', {animal: animal})
+    })
+  });
+
+// UPDATE changes status
+router.get("/animals/:id/adopt", function(req, res){
+  Animal.findByIdAndUpdate(req.params.id, {status: "adopted"}, function(err, animal){
+    res.redirect('/animals');
+  })
+});
+
+// UPDATE changes status
+router.get("/animals/:id/abandon", function(req, res){
+  Animal.findByIdAndUpdate(req.params.id, {status: "orphan"}, function(err, animal){
+    res.redirect('/animals');
+  })
+});
 
 module.exports = router
 

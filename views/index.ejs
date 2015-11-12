@@ -33,6 +33,13 @@
     <li> DOB: <%= animals.dob %></li>
     <li> Gender: <%= animals.gender %></li>
     <li> Family: <%= animals.family %></li>
+    <li>
+      <% if (animals.status == "orphan"){ %>
+        <a href="/animals/<%= animals.id %>/adopt">Adopt</a>
+      <% } else { %>
+        <a href="/animals/<%= animals.id %>/abandon">Abandon</a>
+      <% } %>
+    </li>
   </ul>
 </ul>
 <% }) %>
