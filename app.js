@@ -6,7 +6,7 @@ var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 
-var app = express();
+var app    = express();
 var router = express.Router();
 
 var moongoose = require('mongoose');
@@ -32,39 +32,20 @@ if (app.get('env') === 'development') {
   });
 }
 
-app.listen(3000);
-console.log("Server Started");
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 // ############ YOU CAN ADD YOUR CODE BELOW ########
 // ###### HAPPY CODING  :) #########################
 
-require("./models/animal");
-var Animal = moongoose.model("Animal");
+app.use(require('./controllers/animals'));
 
-app.get("/animals", function(req, res){
-  Animal.find({}, function (err, animals) {
-    res.render('animals/index', { animals: animals });
-  });
-});
-
-app.post("/animals", function(req, res){
-  Animal.create(req.body.animal, function (err, animal) {
-    if(err){
-      res.send("something wrong happened"+ err);
-    }else{
-      res.redirect('/animals');
-    }
-  });
-});
-
-app.get("/animals/:id/adopt", function(req, res){
-  Animal.findByIdAndUpdate(req.params.id, {status: "adopted"}, function(err, animal){
-    res.redirect('/animals');
-  });
-});
-
-app.get("/animals/:id/abandon", function(req, res){
-  Animal.findByIdAndUpdate(req.params.id, {status: "orphan"}, function(err, animal){
-    res.redirect('/animals');
-  });
-});
+app.listen(3000);
+console.log('Server has Awaken...');

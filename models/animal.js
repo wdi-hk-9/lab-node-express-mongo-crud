@@ -7,4 +7,7 @@ var AnimalSchema = new mongoose.Schema({
   family:         { type: String },
   status:         { type: String, enum: ["adopted", "orphan"] }
 });
-mongoose.model('Animal', AnimalSchema);
+
+var Animal = mongoose.model('Animal', AnimalSchema);
+
+module.exports = Animal;
