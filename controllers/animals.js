@@ -10,15 +10,14 @@ router.route('/')
   .get(function(req, res, next) {
     return Animal.find({}, function(err, animals) {
       if (!err){
-        res.render('index', {
-          animals: animals
-        });
+        res.render('index', {animals});
         console.log(animals);
       } else {
           return console.log(err);
       }
     });
   })
+
   // CREATE
   .post(function(req, res) {
     var newAnimal = Animal (req.body)
@@ -30,6 +29,21 @@ router.route('/')
         res.redirect('/animals');
     });
   })
+
+router.route('/:id')
+  // SHOW
+  .get (function(req, res){
+    Animal.findById(req.params.id, function(err, animal) {
+      if (!err){
+        res.render('show', {animal})
+      } else  {
+        console.log(err)
+      }
+    });
+});
+
+   // res.json(products[req.params.id])
+
 module.exports = router
 
 // Testing if DB is working
