@@ -16,10 +16,10 @@ moongoose.connect('mongodb://127.0.0.1/animalshelter');
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.set('views', path.join(__dirname, 'views'));
-app.use(expressLayouts);
-app.engine('ejs', require('ejs').renderFile);
+app.set('views', './views');
 app.set('view engine', 'ejs');
+app.engine('ejs', require('ejs').renderFile);
+// app.use(expressLayouts);
 
 // development error handler
 // will print stacktrace
@@ -40,23 +40,56 @@ console.log("Server Started");
 // ###### HAPPY CODING  :) #########################
 var Animal = require('./models/animal')
 
-// Animal.find({}, function(err, animals) {
-//   if (err) console.log(err);
-//   console.log(animals);
+router.route('/')
+  .get(function(req, res) {
+    Animal.find(function(err, animals) {
+      if (err) {
+        return res.send(err);
+      }
+      res.render('index', {
+        animals: animals,
+      });
+    });
+  });
+
+// app.get('/', function(req, res) {
+//     var drinks = [
+//         { name: 'Bloody Mary', drunkness: 3 },
+//         { name: 'Martini', drunkness: 5 },
+//         { name: 'Scotch', drunkness: 10 }
+//     ];
+//     var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
+
+//     res.render('pages/index', {
+//         drinks: drinks,
+//         tagline: tagline
+//     });
 // });
 
-// var cat = new Animal({ family: 'cat'});
-
-// cat.findSimilarFamily(function (err, cats ) {
-//   console.log(cats);
-// })
-
-Animal.all({}, function (err, animals) {
-  console.log(animals);
-});
 
 
+//   .post(function(req, res) {
+//     var newAnimal = new Animal(req.body);
 
-// router.get('/', function(req, res) {
+//     newAnimal.save(function(err) {
+//       if (err) {
+//         return res.send(err);
+//       }
+//       res.send({ message: 'Animal Added' });
+//     });
+//   });
 
-// });
+// router.route('/animals/:id')
+//   .put(function(req, res) {
+//     Animal.findOne({ _id: req.params.id}, function(err, animal) {
+//       if (err) {
+//         return res.send(err);
+//       }
+//       if (animal[status] == 'adopted') {
+//         animal[status] = 'orphan';
+//       }
+//       animal[status] = 'adopted';
+//     })
+//   });
+
+app.use('/', router);

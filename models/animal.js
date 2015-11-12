@@ -23,6 +23,21 @@ animalSchema.statics.all = function (cb) {
   return this.find({ }, cb);
 };
 
+animalSchema.statics.create = function() {
+  var newAnimal = Animal({
+    name: req.body.name,
+    breed: req.body.breed,
+    dob: req.body.dob,
+    gender: req.body.gender,
+    family: req.body.family,
+    status: req.body.status
+  });
+
+  newAnimal.save(function(err) {
+    if (err) console.log(err);
+    console.log('Animal created');
+  });
+};
 
 // Animal.findOneAndRemove({ name: 'Oreo'}, function(err) {
 //   if (err) console.log(err);
