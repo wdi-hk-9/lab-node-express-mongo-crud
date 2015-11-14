@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animal Shelter</title>
+</head>
+<body>
+  <header> <h1> Animal Shelter </h1></header>
+  <h2> Add an Animal</h2>
+  <hr>
+
+  <form action='/animals' method='post'>
+    <input type="text" name="name" placeholder="Breed">
+
+    <input type="text" name="family" placeholder="Family">
+
+    <input type="text" name="name" placeholder="Name">
+
+    <input type="text" name="gender" placeholder="Gender(M F)">
+
+    <input type="text" name="dob" placeholder="dd/mm/yyyy">
+  <br><br>
+  <input type="submit" value="Add an animal">
+</form>
+
+<% animals.forEach(function(animals){ %>
+<ul>
+<a href= "/animals/<%= animals['_id'] %>" >
+  <li> <%= animals.name %></li>
+</a>
+    <ul>
+    <li> Breed: <%= animals.breed %></li>
+    <li> DOB: <%= animals.dob %></li>
+    <li> Gender: <%= animals.gender %></li>
+    <li> Family: <%= animals.family %></li>
+    <li>
+      <% if (animals.status == "orphan"){ %>
+        <a href="/animals/<%= animals.id %>/adopt">Adopt</a>
+      <% } else { %>
+        <a href="/animals/<%= animals.id %>/abandon">Abandon</a>
+      <% } %>
+    </li>
+  </ul>
+</ul>
+<% }) %>
+
+</body>
+</html>
